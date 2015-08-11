@@ -1,0 +1,22 @@
+<div class="page-header">
+    <h1>Bloggers</h1>
+</div>
+<div class="container">
+    <?php if (isset($this->bloggers['count']) && $this->bloggers['count']) { ?>
+        <div class="row" id="users">
+            <table class="table table-striped">
+                <tbody>
+                    <?php foreach ($this->bloggers['rows'] as $blogger) { ?>
+                        <tr>
+                            <td>
+                                <a href="/user/<?php echo $blogger['id']; ?>" title="<?php echo $blogger['email']; ?>"><?php echo $blogger['name']; ?></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php } else { ?>
+        <p>Nothing to show yet!</p>
+    <?php } ?>
+</div>
