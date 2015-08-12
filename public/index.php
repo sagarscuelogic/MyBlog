@@ -33,12 +33,19 @@ $router->addRoute('home', new Zend_Controller_Router_Route('/', array('module' =
 // Login
 $router->addRoute('login', new Zend_Controller_Router_Route('/login', array('module' => 'default', 'controller' => 'homepage', 'action' => 'login')));
 $router->addRoute('register', new Zend_Controller_Router_Route('/register', array('module' => 'default', 'controller' => 'homepage', 'action' => 'register')));
+$router->addRoute('logout', new Zend_Controller_Router_Route('/logout', array('module' => 'default', 'controller' => 'homepage', 'action' => 'logout')));
 
 // Posts
 $router->addRoute('post_list', new Zend_Controller_Router_Route('/post', array('module' => 'default', 'controller' => 'post', 'action' => 'list')));
 $router->addRoute('post_add', new Zend_Controller_Router_Route('/post/add', array('module' => 'default', 'controller' => 'post', 'action' => 'add')));
 $router->addRoute('post_edit', new Zend_Controller_Router_Route('/post/edit/:id', array('module' => 'default', 'controller' => 'post', 'action' => 'add')));
 $router->addRoute('post_view', new Zend_Controller_Router_Route('/post/:id', array('module' => 'default', 'controller' => 'post', 'action' => 'view')));
+
+// Comments
+$router->addRoute('comment_list', new Zend_Controller_Router_Route('/comment', array('module' => 'default', 'controller' => 'comment', 'action' => 'list')));
+$router->addRoute('comment_add', new Zend_Controller_Router_Route('/comment/add', array('module' => 'default', 'controller' => 'comment', 'action' => 'add')));
+$router->addRoute('comment_edit', new Zend_Controller_Router_Route('/comment/edit/:id', array('module' => 'default', 'controller' => 'comment', 'action' => 'add')));
+$router->addRoute('comment_delete', new Zend_Controller_Router_Route('/comment/delete/:id', array('module' => 'default', 'controller' => 'comment', 'action' => 'delete')));
 
 // Users
 $router->addRoute('blogger', new Zend_Controller_Router_Route('/bloggers', array('module' => 'default', 'controller' => 'user', 'action' => 'list')));

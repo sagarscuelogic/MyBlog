@@ -1,4 +1,32 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Post</b> and script/action name <b>view</b></p>
+<script type="text/javascript" src="/js/post/index.js"></script>
+<?php $authUser_NameSpace = new Zend_Session_Namespace('Myblog_Auth'); ?>
+<div class="container">
+    <?php if (isset($this->post)) { ?>
+        <input type="hidden" id="postId" value="<?php echo $this->post->id; ?>" />
+        <article>
+            <h2 class="page-header clearfix"><?php echo $this->post->title; ?><br/><small class="pull-right">On <?php echo $this->post->created_on; ?> By <a href="/user/<?php echo $this->post->created_by; ?>"><?php echo $this->post->author; ?></a></small></h2>
+            <p><?php echo $this->post->content; ?></p>
+            <div class="well well-sm">
+                <h4 class="page-header">Comments (<?php echo $this->post->commentsCount; ?>)</h4>
+                <div id="comments"></div>
+                <?php if (isset($authUser_NameSpace->user->id)) { ?>
+                    <input type="hidden" id="userId" value="<?php echo $authUser_NameSpace->user->id; ?>" />
+                    <input type="hidden" id="userName" value="<?php echo $authUser_NameSpace->user->name; ?>" />
+                    <br />
+                    <div class="container">
+                        <form class="post-comment-form">
+                            <div class="form-group col-lg-10">
+                                <textarea rows="1" name="comment" class="form-control" placeholder="Your comment here"></textarea>
+                            </div>
+<!--                            <button type="submit" class="btn btn-info">Post</button>-->
+                        </form>
+                    </div>
+                <?php } else { ?>
+                    <a href="/login">Sign in</a> to comment
+                <?php } ?>
+            </div>
+        </article>
+    <?php } else { ?>
+        <div class="alert alert-warning" role="alert">Something went wrong!</div>
+    <?php } ?>
 </div>

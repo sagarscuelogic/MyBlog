@@ -16,6 +16,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="register"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="Login">
           <actionMethod actionName="index"/>
@@ -31,6 +32,12 @@
           <actionMethod actionName="view"/>
           <actionMethod actionName="add"/>
           <actionMethod actionName="list"/>
+        </controllerFile>
+        <controllerFile controllerName="Comment">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="list"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -139,6 +146,21 @@
           <viewControllerScriptsDirectory forControllerName="Homepage">
             <viewScriptFile forActionName="register"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Homepage">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Comment">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Comment">
+            <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Comment">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Comment">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -178,6 +200,7 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="register"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Login">
             <testApplicationActionMethod forActionName="index"/>
@@ -193,6 +216,12 @@
             <testApplicationActionMethod forActionName="view"/>
             <testApplicationActionMethod forActionName="add"/>
             <testApplicationActionMethod forActionName="list"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Comment">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="list"/>
+            <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
         <testApplicationModulesDirectory>

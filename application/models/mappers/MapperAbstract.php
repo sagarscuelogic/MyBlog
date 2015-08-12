@@ -384,7 +384,7 @@ abstract class Myblog_Model_Mapper_MapperAbstract
         } else {
             $select->where("{$field} = ?", $value);
         }
-
+        
         $rows = $table->fetchAll($select);
         foreach ($rows as $row) {
             $model = $this->loadModel($row, null);

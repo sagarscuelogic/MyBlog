@@ -38,4 +38,19 @@ class Myblog_Model_Utils_User {
         
         return count($userModel->getMapper()->findOneByField('email', $email));
     }
+    
+    public function authenticate($username, $password) {
+        $userModel = new Myblog_Model_User();
+        
+        return $userModel->getMapper()->findOneByField(array('email', 'password'), array('email' => $username, 'password' => md5($password)));
+    }
+    
+    public function getNameById($userId) {
+        $userModel = new Myblog_Model_User();
+        $userModel = $userModel->find($userId);
+        if($userModel) {
+            return $userModel->getName();
+        }
+        return false;
+    }
 }

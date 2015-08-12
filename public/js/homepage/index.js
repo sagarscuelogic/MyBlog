@@ -12,17 +12,11 @@
                 dataType: 'JSON',
                 success: function (data, textStatus, jqXHR) {
                     if (!data.status) {
-                        $('#messageBox > #messageContent')
-                                .addClass('alert-warning')
-                                .text(data.message);
-                        $('#messageBox').removeClass('hide');
+                        showMessage('warning', data.message);
                         return false;
                     }
                     if (!data.count) {
-                        $('#messageBox > #messageContent')
-                                .addClass('alert-warning')
-                                .text('Nothing to show yet!');
-                        $('#messageBox').removeClass('hide');
+                        showMessage('warning', 'Nothing to show yet!');
                         return false;
                     }
                     if (data.count) {
@@ -58,40 +52,42 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    $('#messageBox > #messageContent')
-                            .addClass('alert-danger')
-                            .text(errorThrown);
-                    $('#messageBox').removeClass('hide');
+                    showMessage('danger', errorThrown);
                 }
             });
         }
 
         if ($('.form-signup').length || $('.form-signin').length) {
             $('.form-signup, .form-signin').submit(function (event) {
+                var form = $(this).hasClass('form-signup') ? 'signup' : 'signin';
                 event.preventDefault();
-                if ($(this).hasClass('form-signup')) {
-                    $.ajax({
-                        type: "POST",
-                        dataType: 'JSON',
-                        url: '/user/add',
-                        data: $(this).serialize(),
-                        success: function (data, textStatus, jqXHR) {
-                            if (!data.status) {
-                                $('#messageBox > #messageContent')
-                                        .addClass('alert-danger')
-                                        .text(data.message);
-                                $('#messageBox').removeClass('hide');
-                                return false;
+                $.ajax({
+                    type: "POST",
+                    dataType: 'JSON',
+                    url: (form === 'signup') ? '/user/add' : '/login',
+                    data: $(this).serialize(),
+                    success: function (data, textStatus, jqXHR) {
+                        if (!data.status) {
+                            showMessage('danger', data.message);
+                           
+                            if (data.errorFields.length) {
+                                $.each(data.errorFields, function (ef, errorField) {
+                                    $("#" + errorField).closest('.form-group').addClass('has-error');
+                                })
                             }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            $('#messageBox > #messageContent')
-                                    .addClass('alert-danger')
-                                    .text(errorThrown);
-                            $('#messageBox').removeClass('hide');
+                            return true;
                         }
-                    });
-                }
+                        if (form === 'signup') {
+                            showMessage('success', 'Welcome to MyBlog! You\'ve successfully registered.');
+                            $('.form-signup, .form-signin').trigger('reset');
+                            window.location.href = '/login';
+                        }
+                        window.location.href = '/';
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        showMessage('danger', errorThrown);
+                    }
+                });
                 return false;
             });
         }

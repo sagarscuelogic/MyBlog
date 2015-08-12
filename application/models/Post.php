@@ -173,9 +173,11 @@ class Myblog_Model_Post extends Myblog_Model_ModelAbstract
             if (! $data instanceof Zend_Date) {
                 $data = new Zend_Date($data);
             }
-
-            $data = $data->toString('YYYY-MM-ddTHH:mm:ss.S');
+        } else {
+            $data = new Zend_Date();
         }
+        
+        $data = $data->toString('YYYY-MM-ddTHH:mm:ss.S');
 
         $this->_CreatedOn = $data;
         return $this;

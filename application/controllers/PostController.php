@@ -10,8 +10,8 @@ class PostController extends Zend_Controller_Action {
         /* Initialize action controller here */
         $this->authUserNameSpace = new Zend_Session_Namespace('Myblog_Auth');
 
-        if (isset($this->authUserNameSpace->userId) && $this->authUserNameSpace->userId != "") {
-            $this->user_id = $this->authUserNameSpace->userId;
+        if (isset($this->authUserNameSpace->user->id) && $this->authUserNameSpace->user->id != "") {
+            $this->user_id = $this->authUserNameSpace->user->id;
         }
         $this->postModel = new Myblog_Model_Post();        
     }
@@ -51,6 +51,19 @@ class PostController extends Zend_Controller_Action {
 
     public function viewAction() {
         // action body
+        $id = $this->_request->getParam('id');
+        
+        $post = $this->postModel->find($id);
+        
+        if($post) {
+            $userUtil = new Myblog_Model_Utils_User();
+            $commentModel = new Myblog_Model_Comment();
+            $this->view->post = $post->toObject();
+            $this->view->post->author = $userUtil->getNameById($post->getCreatedBy());
+            $this->view->post->commentsCount = $commentModel->getMapper()->countByQuery('post = ' . $id . ' AND parent = 0');
+        } else {
+            $this->view->post = null;
+        }
     }
 
     public function addAction() {

@@ -1,6 +1,6 @@
 <?php
 
-class HomepageControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
+class CommentControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
 
     public function setUp()
@@ -11,7 +11,7 @@ class HomepageControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'Homepage', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'Comment', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -26,9 +26,9 @@ class HomepageControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
             );
     }
 
-    public function testLoginAction()
+    public function testListAction()
     {
-        $params = array('action' => 'login', 'controller' => 'Homepage', 'module' => 'default');
+        $params = array('action' => 'list', 'controller' => 'Comment', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -43,9 +43,9 @@ class HomepageControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
             );
     }
 
-    public function testRegisterAction()
+    public function testAddAction()
     {
-        $params = array('action' => 'register', 'controller' => 'Homepage', 'module' => 'default');
+        $params = array('action' => 'add', 'controller' => 'Comment', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -60,9 +60,9 @@ class HomepageControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
             );
     }
 
-    public function testLogoutAction()
+    public function testDeleteAction()
     {
-        $params = array('action' => 'logout', 'controller' => 'Homepage', 'module' => 'default');
+        $params = array('action' => 'delete', 'controller' => 'Comment', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
