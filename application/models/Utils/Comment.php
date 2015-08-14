@@ -25,6 +25,7 @@ class Myblog_Model_Utils_Comment {
             $userUtils = new Myblog_Model_Utils_User();
             foreach ($comments as $comment) {
                 $comment = $comment->toArray();
+                $comment['author'] = $userUtils->getNameById($comment['created_by']);
                 $comment['children'] = $this->getChildren($postId, $comment['id']);
                 $response[] = $comment;
             }
@@ -41,6 +42,7 @@ class Myblog_Model_Utils_Comment {
                 $userUtils = new Myblog_Model_Utils_User();
                 foreach ($comments as $comment) {
                     $comment = $comment->toArray();
+                    $comment['author'] = $userUtils->getNameById($comment['created_by']);
                     $comment['children'] = $this->getChildren($post, $comment['id']);
                     $response[] = $comment;
                 }

@@ -53,4 +53,13 @@ class Myblog_Model_Utils_User {
         }
         return false;
     }
+    
+    public function isAdmin($userId) {
+        $userModel = new Myblog_Model_User();
+        $userModel = $userModel->find($userId);
+        if($userModel) {
+            return (strcmp($userModel->getRole(), 'admin') !== 0);
+        }
+        return false;
+    }
 }

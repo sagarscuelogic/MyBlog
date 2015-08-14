@@ -1,4 +1,14 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Post</b> and script/action name <b>list</b></p>
-</div>
+<?php $authUser_NameSpace = new Zend_Session_Namespace('Myblog_Auth'); ?>
+<?php if (isset($this->posts) && count($this->posts)) {
+    foreach ($this->posts as $post) { ?>
+<article>
+    <blockquote>
+        <h1>
+            <a href="/post/<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+        </h1>
+        <p><?php echo $post['content']; ?></p>
+        <footer>On <?php echo $post['created_on']; ?> <cite>By <a href="<?php if(isset($authUser_NameSpace->user->id) && ($authUser_NameSpace->user->id == $post['created_by'])) { ?>/myprofile<?php } else { ?>/user/<?php echo $post['created_by']; ?><?php } ?>"><?php echo $post['author']; ?></a></cite></footer>
+    </blockquote>
+</article>
+    <?php }
+} ?>

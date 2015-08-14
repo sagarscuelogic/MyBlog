@@ -26,12 +26,14 @@
           <actionMethod actionName="list"/>
           <actionMethod actionName="view"/>
           <actionMethod actionName="add"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
           <actionMethod actionName="view"/>
           <actionMethod actionName="add"/>
           <actionMethod actionName="list"/>
+          <actionMethod actionName="myprofile"/>
         </controllerFile>
         <controllerFile controllerName="Comment">
           <actionMethod actionName="index"/>
@@ -161,6 +163,12 @@
           <viewControllerScriptsDirectory forControllerName="Comment">
             <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Post">
+            <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="myprofile"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -210,12 +218,14 @@
             <testApplicationActionMethod forActionName="list"/>
             <testApplicationActionMethod forActionName="view"/>
             <testApplicationActionMethod forActionName="add"/>
+            <testApplicationActionMethod forActionName="delete"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="view"/>
             <testApplicationActionMethod forActionName="add"/>
             <testApplicationActionMethod forActionName="list"/>
+            <testApplicationActionMethod forActionName="myprofile"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Comment">
             <testApplicationActionMethod forActionName="index"/>

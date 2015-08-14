@@ -21,17 +21,16 @@
                 }
             });
         });
-
-        function showMessage(type, message) {
-            $('#messageBox > #messageContent')
-                    .removeClass('alert-success')
-                    .removeClass('alert-info')
-                    .removeClass('alert-warning')
-                    .removeClass('alert-danger')
-                    .removeClass('alert-error')
-                    .addClass('alert-' + type)
-                    .text(message);
-            $('#messageBox').removeClass('hide');
-        }
     });
+    window.showMessage = function (type, message) {
+        $('#messageBox > #messageContent')
+                .removeClass('alert-success')
+                .removeClass('alert-info')
+                .removeClass('alert-warning')
+                .removeClass('alert-danger')
+                .removeClass('alert-error')
+                .addClass('alert-' + type)
+                .text(message);
+        $('#messageBox').removeClass('hide');
+    };
 })(jQuery, window, document);

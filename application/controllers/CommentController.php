@@ -47,7 +47,7 @@ class CommentController extends Zend_Controller_Action {
             } else {
                 $postId = $this->_request->getParam('postId');
                 $content = $this->_request->getParam('comment');
-                $parent = $this->_request->getParam('parent');
+                $parent = $this->_request->getParam('commentId');
 
                 $commentModel = new Myblog_Model_Comment();
                 $commentModel->setContent(trim($content));
@@ -56,11 +56,10 @@ class CommentController extends Zend_Controller_Action {
                 $commentModel->setCreatedOn('');
                 $commentModel->setCreatedBy($this->authUserNameSpace->user->id);
                 $saveResult = $commentModel->save();
-                
-                if($saveResult) {
+
+                if ($saveResult) {
                     $response['status'] = true;
                     $response['id'] = $saveResult;
-                    $response['body'] = trim($content);
                 }
             }
             echo json_encode($response);
@@ -70,6 +69,21 @@ class CommentController extends Zend_Controller_Action {
 
     public function deleteAction() {
         // action body
+
+        if ($this->_request->isXmlHttpRequest()) {
+            $commentModel = new Myblog_Model_Comment();
+            $id = $this->_request->getParam('id');
+
+            $response = array(
+                'status' => true
+            );
+
+            if ($id) {
+                $response['status'] = boolval($commentModel->deleteRowByPrimaryKey($id));
+            }
+            echo json_encode($response);
+            exit;
+        }
     }
 
 }

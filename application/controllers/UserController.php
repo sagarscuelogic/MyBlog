@@ -1,23 +1,28 @@
 <?php
 
-class UserController extends Zend_Controller_Action {
+class UserController extends Zend_Controller_Action
+{
 
-    protected $userUtil;
+    protected $userUtil = null;
 
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         $this->userUtil = new Myblog_Model_Utils_User();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         // action body
     }
 
-    public function viewAction() {
+    public function viewAction()
+    {
         // action body
     }
 
-    public function addAction() {
+    public function addAction()
+    {
         // action body
         if ($this->_request->isXmlHttpRequest()) {
             $name = $this->_request->getParam('inputName');
@@ -52,13 +57,23 @@ class UserController extends Zend_Controller_Action {
             echo json_encode($response);
             exit;
         }
+        
     }
 
-    public function listAction() {
+    public function listAction()
+    {
         // action body
         $bloggers = $this->userUtil->getAllBloggers();
 
         $this->view->bloggers = $bloggers;
     }
 
+    public function myprofileAction()
+    {
+        // action body
+    }
+
+
 }
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/views/scripts/post/add.phtml</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/views/scripts/homepage/index.phtml</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/views/scripts/post/view.phtml</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/models/Utils/Acl.php</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/models/header.php</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/models/Utils/AclPlugin.php</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/application/configs/acl.ini</file>
+            <file>file:/home/sagar/NetBeansProjects/MyBlog/public/js/post/index.js</file>
+        </group>
+    </open-files>
+</project-private>

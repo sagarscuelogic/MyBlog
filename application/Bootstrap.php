@@ -10,4 +10,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $logger = new Zend_Log($writer);
         Zend_Registry::set('logger', $logger);
     }
+
+    protected function _initLoadAclIni() {
+        $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/acl.ini');
+        Zend_Registry::set('acl', $config);
+    }
+
+    protected function _initAclControllerPlugin() {
+        $this->bootstrap('frontcontroller');
+        $this->bootstrap('loadAclIni');
+
+        $front = Zend_Controller_Front::getInstance();
+
+        $aclPlugin = new Myblog_Model_Utils_AclPlugin(new Myblog_Model_Utils_Acl());
+
+        $front->registerPlugin($aclPlugin);
+    }
+
 }

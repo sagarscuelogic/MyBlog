@@ -3,28 +3,53 @@
 <div class="container">
     <?php if (isset($this->post)) { ?>
         <input type="hidden" id="postId" value="<?php echo $this->post->id; ?>" />
+        <?php if (isset($authUser_NameSpace->acl) && isset($authUser_NameSpace->user->role)) { ?>
+            <?php if ($authUser_NameSpace->user->role == 'admin') { ?>
+                <input type="hidden" id="isAdmin" value="true" />
+            <?php } ?>
+            <input type="hidden" id="isAuthor" value="<?php
+            if ($authUser_NameSpace->user->id == $this->post->created_by) {
+                echo true;
+            } else {
+                echo false;
+            }
+            ?>" />
+            <input type="hidden" id="isCommentEditAllowed" value="<?php echo $authUser_NameSpace->acl->isAllowed($authUser_NameSpace->user->role, 'comment', 'edit'); ?>" />
+            <input type="hidden" id="isCommentDeleteAllowed" value="<?php echo $authUser_NameSpace->acl->isAllowed($authUser_NameSpace->user->role, 'comment', 'delete'); ?>" />
+        <?php } ?>
         <article>
             <h2 class="page-header clearfix"><?php echo $this->post->title; ?><br/><small class="pull-right">On <?php echo $this->post->created_on; ?> By <a href="/user/<?php echo $this->post->created_by; ?>"><?php echo $this->post->author; ?></a></small></h2>
+            <?php if (isset($authUser_NameSpace->user->id) && $authUser_NameSpace->user->id == $this->post->created_by) { ?>
+                <div class="row text-right">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0);" title="Edit the post"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0);" title="Delete the post"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+                <hr />
+            <?php } ?>
             <p><?php echo $this->post->content; ?></p>
-            <div class="well well-sm">
-                <h4 class="page-header">Comments (<?php echo $this->post->commentsCount; ?>)</h4>
-                <div id="comments"></div>
-                <?php if (isset($authUser_NameSpace->user->id)) { ?>
-                    <input type="hidden" id="userId" value="<?php echo $authUser_NameSpace->user->id; ?>" />
-                    <input type="hidden" id="userName" value="<?php echo $authUser_NameSpace->user->name; ?>" />
-                    <br />
-                    <div class="container">
-                        <form class="post-comment-form">
-                            <div class="form-group col-lg-10">
-                                <textarea rows="1" name="comment" class="form-control" placeholder="Your comment here"></textarea>
+            <?php if (isset($authUser_NameSpace->acl) && isset($authUser_NameSpace->user->role) && $authUser_NameSpace->acl->isAllowed($authUser_NameSpace->user->role, 'comment', 'list')) { ?>
+                <div class="well well-sm">
+                    <h4 class="page-header">Comments (<?php echo $this->post->commentsCount; ?>)</h4>
+                    <div id="comments"></div>
+                    <?php if (isset($authUser_NameSpace->user->id)) { ?>
+                        <input type="hidden" id="userId" value="<?php echo $authUser_NameSpace->user->id; ?>" />
+                        <input type="hidden" id="userName" value="<?php echo $authUser_NameSpace->user->name; ?>" />
+                        <br />
+                        <?php if (isset($authUser_NameSpace->acl) && isset($authUser_NameSpace->user->role) && $authUser_NameSpace->acl->isAllowed($authUser_NameSpace->user->role, 'comment', 'add')) { ?>
+                            <div class="container">
+                                <form class="post-comment-form">
+                                    <div class="form-group col-lg-10">
+                                        <textarea rows="1" name="comment" class="form-control" placeholder="Your comment here"></textarea>
+                                    </div>
+                                </form>
                             </div>
-<!--                            <button type="submit" class="btn btn-info">Post</button>-->
-                        </form>
-                    </div>
-                <?php } else { ?>
-                    <a href="/login">Sign in</a> to comment
-                <?php } ?>
-            </div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            <?php } else { ?>
+                <hr />
+                <a href="/login">Sign in</a> to see or post comment
+            <?php } ?>
         </article>
     <?php } else { ?>
         <div class="alert alert-warning" role="alert">Something went wrong!</div>

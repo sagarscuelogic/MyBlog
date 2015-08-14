@@ -49,7 +49,7 @@ $router->addRoute('comment_delete', new Zend_Controller_Router_Route('/comment/d
 
 // Users
 $router->addRoute('blogger', new Zend_Controller_Router_Route('/bloggers', array('module' => 'default', 'controller' => 'user', 'action' => 'list')));
-$router->addRoute('myprofile', new Zend_Controller_Router_Route('/myprofile', array('module' => 'default', 'controller' => 'user', 'action' => 'view')));
+$router->addRoute('myprofile', new Zend_Controller_Router_Route('/myprofile', array('module' => 'default', 'controller' => 'user', 'action' => 'myprofile')));
 $router->addRoute('user_view', new Zend_Controller_Router_Route('/user/:id', array('module' => 'default', 'controller' => 'user', 'action' => 'view')));
 $router->addRoute('user_add', new Zend_Controller_Router_Route('/user/add', array('module' => 'default', 'controller' => 'user', 'action' => 'add')));
 

@@ -1,0 +1,12 @@
+<?php $authUser_NameSpace = new Zend_Session_Namespace('Myblog_Auth'); ?>
+<div class="container">
+    <h1 class="page-header"><?php echo $authUser_NameSpace->user->name?></h1>
+    <table class="table table-striped">
+        <?php foreach(get_object_vars($authUser_NameSpace->user) as $property => $value) { ?>
+        <tr>
+            <th><?php echo $property?></th>
+            <td><?php echo $value?></td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>

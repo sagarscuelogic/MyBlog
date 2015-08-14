@@ -28,6 +28,7 @@ class HomepageController extends Zend_Controller_Action {
             );
             if ($userModel) {
                 $this->authUser_NameSpace->user = $userModel->toObject();
+                $this->authUser_NameSpace->acl = new Myblog_Model_Utils_Acl();
             } else {
                 $response['status'] = false;
                 $response['message'] = 'Login failed';
